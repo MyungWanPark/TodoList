@@ -5,22 +5,16 @@ import { faMinusSquare } from "@fortawesome/free-solid-svg-icons";
 import { faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 
 class Habit extends Component {
-  state = {
-    count: 0,
-  };
-
   handleIncrement = () => {
-    // setState를 이용해야 react가 state 변경됨을 감지하고 render가 다시 일어남.
-    this.setState({
-      count: this.state.count + 1,
-    });
+    this.props.onIncrement(this.props.habit);
   };
 
   handleDecrement = () => {
-    const count = this.state.count - 1;
-    this.setState({
-      count: count < 0 ? 0 : count,
-    });
+    this.props.onDecrement(this.props.habit);
+  };
+
+  handleDelete = () => {
+    this.props.onDelete(this.props.habit);
   };
 
   render() {
@@ -41,7 +35,10 @@ class Habit extends Component {
         >
           <FontAwesomeIcon icon={faMinusSquare} />
         </button>
-        <button className="habit-button habit-delete">
+        <button
+          className="habit-button habit-delete"
+          onClick={this.handleDelete}
+        >
           <FontAwesomeIcon icon={faTrashAlt} />
         </button>
       </ul>
