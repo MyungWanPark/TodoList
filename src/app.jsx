@@ -2,6 +2,7 @@ import "./app.css";
 import Habits from "./components/habits";
 import React, { Component } from "react";
 import Navbar from "./components/navbar";
+import AddHabit from "./components/addHabit";
 
 class App extends Component {
   state = {
@@ -32,12 +33,21 @@ class App extends Component {
     this.setState({ habits });
   };
 
+  handleAdd = (name) => {
+    const habits = [
+      ...this.state.habits,
+      { id: this.state.habits.length + 1, name, count: 0 },
+    ];
+    this.setState({ habits });
+  };
+
   render() {
     return (
       <>
         <Navbar
           totalCount={this.state.habits.filter((item) => item.count > 0).length}
         />
+        <AddHabit onAdd={this.handleAdd} />
         <Habits
           habits={this.state.habits}
           onIncrement={this.handleIncrement}
