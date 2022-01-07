@@ -16,17 +16,22 @@ class Habits extends Component {
 
   render() {
     return (
-      <ul>
-        {this.props.habits.map((habit) => (
-          <Habit
-            key={habit.id}
-            habit={habit}
-            onIncrement={this.handleIncrement}
-            onDecrement={this.handleDecrement}
-            onDelete={this.handleDelete}
-          />
-        ))}
-      </ul>
+      <>
+        <ul>
+          {this.props.habits.map((habit) => (
+            <Habit
+              key={habit.id}
+              habit={habit}
+              onIncrement={this.handleIncrement}
+              onDecrement={this.handleDecrement}
+              onDelete={this.handleDelete}
+            />
+          ))}
+        </ul>
+        <button className="habit-reset" onClick={this.props.onReset}>
+          reset
+        </button>
+      </>
     );
   }
 }
