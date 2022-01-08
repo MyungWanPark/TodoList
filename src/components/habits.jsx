@@ -15,6 +15,7 @@ class Habits extends Component {
   };
 
   render() {
+    console.log("habits rendered!");
     return (
       <>
         <ul>

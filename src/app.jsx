@@ -1,10 +1,10 @@
 import "./app.css";
 import Habits from "./components/habits";
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import Navbar from "./components/navbar";
 import AddHabit from "./components/addHabit";
 
-class App extends Component {
+class App extends PureComponent {
   state = {
     habits: [
       { id: 1, name: "running", count: 0 },
@@ -14,10 +14,13 @@ class App extends Component {
   };
 
   handleIncrement = (habit) => {
-    const habits = [...this.state.habits];
-    const index = habits.indexOf(habit);
-    habits[index].count++;
-    this.setState({ habits });
+    const habits = this.state.habits.map((item) => {
+      if (item.id === habit.id) {
+        return { ...habit, count: habit.count + 1 };
+      }
+      return item;
+    });
+    this.setState({ habits: habits });
   };
 
   handleDecrement = (habit) => {
@@ -50,6 +53,7 @@ class App extends Component {
   };
 
   render() {
+    console.log("app rendered!");
     return (
       <>
         <Navbar

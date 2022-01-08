@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faPlusSquare,
@@ -6,7 +6,7 @@ import {
   faTrashAlt,
 } from "@fortawesome/free-solid-svg-icons";
 
-class Habit extends Component {
+class Habit extends PureComponent {
   handleIncrement = () => {
     this.props.onIncrement(this.props.habit);
   };
@@ -21,6 +21,7 @@ class Habit extends Component {
 
   render() {
     const { name, count } = this.props.habit;
+    console.log(`${name} Habit rendered! `);
     return (
       <ul className="habits">
         <span className="habit-name">{name}</span>

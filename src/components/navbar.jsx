@@ -4,6 +4,7 @@ import { faLeaf } from "@fortawesome/free-solid-svg-icons";
 
 class Navbar extends Component {
   render() {
+    console.log("navbar rendered!");
     return (
       <nav className="navbar">
         <FontAwesomeIcon icon={faLeaf} className="navbar-icon" />
